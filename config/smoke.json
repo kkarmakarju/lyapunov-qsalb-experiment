@@ -1,0 +1,16 @@
+{
+  "extends": "manuscript.json",
+  "seed_base": 7001,
+  "replications": 2,
+  "slots": 36,
+  "warmup_slots": 8,
+  "arrival_rates": [0.8, 1.6],
+  "policies": ["QSALB-Full", "LEO", "GMQ", "LFO", "EAO", "CFOP"],
+  "ablations": ["QSALB-Full", "QSALB-NoPred", "QSALB-NoEnergy", "QSALB-NoQueue"],
+  "scenario_policies": ["QSALB-Full", "GMQ"],
+  "scenarios": ["normal", "bursty"],
+  "stress_devices": [12, 24],
+  "stress_policies": ["QSALB-Full", "GMQ"],
+  "network": {"iot_devices": 12, "edge_nodes": 3, "fog_nodes": 2, "cloud_nodes": 1}
+}
+

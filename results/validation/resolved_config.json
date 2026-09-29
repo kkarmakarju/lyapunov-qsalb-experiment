@@ -1,0 +1,186 @@
+{
+  "seed_base": 20260929,
+  "replications": 1,
+  "slots": 80,
+  "warmup_slots": 20,
+  "slot_seconds": 1.0,
+  "arrivals_eligible_same_slot": true,
+  "arrival_rates": [
+    0.8,
+    1.2,
+    1.6,
+    2.0,
+    2.4
+  ],
+  "policies": [
+    "QSALB-Full",
+    "LEO",
+    "GMQ",
+    "LFO",
+    "EAO",
+    "CFOP"
+  ],
+  "ablations": [
+    "QSALB-Full",
+    "QSALB-NoPred",
+    "QSALB-NoEnergy",
+    "QSALB-NoQueue"
+  ],
+  "scenario_policies": [
+    "QSALB-Full",
+    "GMQ",
+    "LFO",
+    "CFOP"
+  ],
+  "scenarios": [
+    "normal",
+    "bursty",
+    "mobility",
+    "fog_congestion",
+    "trace"
+  ],
+  "scenario_arrival_rate": 1.6,
+  "stress_devices": [
+    100,
+    250,
+    500,
+    1000
+  ],
+  "stress_policies": [
+    "QSALB-Full",
+    "GMQ",
+    "CFOP"
+  ],
+  "stress_arrival_rate": 1.6,
+  "time_series_rate": 1.6,
+  "network": {
+    "iot_devices": 100,
+    "edge_nodes": 10,
+    "fog_nodes": 3,
+    "cloud_nodes": 1,
+    "iot_gflops": [
+      0.5,
+      2.0
+    ],
+    "edge_gflops": [
+      5.0,
+      10.0
+    ],
+    "fog_gflops": [
+      20.0,
+      50.0
+    ],
+    "cloud_gflops": [
+      100.0,
+      500.0
+    ],
+    "queue_capacity": {
+      "iot": 80,
+      "edge": 300,
+      "fog": 800,
+      "cloud": 4000
+    },
+    "reference_cycles_per_task": 2250000000.0,
+    "horizontal_edge_candidates": 2
+  },
+  "task": {
+    "size_kb": [
+      50.0,
+      2000.0
+    ],
+    "cycles": [
+      500000000.0,
+      4000000000.0
+    ],
+    "deadline_ms": [
+      50.0,
+      500.0
+    ]
+  },
+  "links": {
+    "iot_edge_mbps": [
+      2.0,
+      10.0
+    ],
+    "iot_edge_prop_ms": [
+      5.0,
+      20.0
+    ],
+    "edge_edge_mbps": [
+      50.0,
+      200.0
+    ],
+    "edge_edge_prop_ms": [
+      2.0,
+      8.0
+    ],
+    "edge_fog_mbps": [
+      100.0,
+      500.0
+    ],
+    "edge_fog_prop_ms": [
+      8.0,
+      25.0
+    ],
+    "fog_cloud_mbps": [
+      100.0,
+      500.0
+    ],
+    "cloud_prop_ms": [
+      40.0,
+      80.0
+    ],
+    "max_comm_delay_ms": 900.0,
+    "mobility_bandwidth_floor": 0.25,
+    "mobility_extra_prop_ms": 25.0
+  },
+  "energy": {
+    "battery_mah": [
+      500.0,
+      2000.0
+    ],
+    "battery_voltage": 3.7,
+    "minimum_fraction": 0.05,
+    "processing_j_per_cycle": {
+      "iot": 1.2e-10,
+      "edge": 8e-11,
+      "fog": 5e-11,
+      "cloud": 4e-11
+    },
+    "transmit_j_per_bit": {
+      "edge": 5e-08,
+      "fog": 2e-08,
+      "cloud": 3e-08
+    }
+  },
+  "qsalb": {
+    "alpha": 1.0,
+    "beta": 0.25,
+    "gamma": 0.35,
+    "V": 1.0,
+    "prediction_lambda": 1.5,
+    "prediction_ema": 0.35,
+    "epsilon_q": 1e-06,
+    "latency_scale_ms": 100.0,
+    "energy_scale_j": 1.0,
+    "cloud_cost": 1.0
+  },
+  "cfop": {
+    "edge_threshold": 0.7,
+    "fog_threshold": 0.75
+  },
+  "workload": {
+    "mmpp_low_factor": 0.45,
+    "mmpp_high_factor": 2.8,
+    "mmpp_p_low_high": 0.04,
+    "mmpp_p_high_low": 0.15,
+    "trace_burst_factor": 2.5,
+    "trace_burst_width": 12,
+    "trace_burst_period": 60
+  },
+  "scenario": {
+    "fog_congestion_service_factor": 0.3,
+    "fog_congestion_start_fraction": 0.33,
+    "fog_congestion_end_fraction": 0.67
+  }
+}

@@ -1,0 +1,84 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="900" height="560" viewBox="0 0 900 560">
+<rect width="100%" height="100%" fill="white"/>
+<text x="450.0" y="30" text-anchor="middle" font-family="sans-serif" font-size="20">Average total backlog vs load</text>
+<line x1="92" y1="482.00" x2="872" y2="482.00" stroke="#dddddd"/>
+<text x="82" y="486.00" text-anchor="end" font-family="sans-serif" font-size="12">0.00</text>
+<line x1="92" y1="396.60" x2="872" y2="396.60" stroke="#dddddd"/>
+<text x="82" y="400.60" text-anchor="end" font-family="sans-serif" font-size="12">12.10</text>
+<line x1="92" y1="311.20" x2="872" y2="311.20" stroke="#dddddd"/>
+<text x="82" y="315.20" text-anchor="end" font-family="sans-serif" font-size="12">24.20</text>
+<line x1="92" y1="225.80" x2="872" y2="225.80" stroke="#dddddd"/>
+<text x="82" y="229.80" text-anchor="end" font-family="sans-serif" font-size="12">36.30</text>
+<line x1="92" y1="140.40" x2="872" y2="140.40" stroke="#dddddd"/>
+<text x="82" y="144.40" text-anchor="end" font-family="sans-serif" font-size="12">48.40</text>
+<line x1="92" y1="55.00" x2="872" y2="55.00" stroke="#dddddd"/>
+<text x="82" y="59.00" text-anchor="end" font-family="sans-serif" font-size="12">60.50</text>
+<line x1="92.00" y1="55" x2="92.00" y2="482" stroke="#eeeeee"/>
+<text x="92.00" y="504" text-anchor="middle" font-family="sans-serif" font-size="12">0.8</text>
+<line x1="287.00" y1="55" x2="287.00" y2="482" stroke="#eeeeee"/>
+<text x="287.00" y="504" text-anchor="middle" font-family="sans-serif" font-size="12">1.2</text>
+<line x1="482.00" y1="55" x2="482.00" y2="482" stroke="#eeeeee"/>
+<text x="482.00" y="504" text-anchor="middle" font-family="sans-serif" font-size="12">1.6</text>
+<line x1="677.00" y1="55" x2="677.00" y2="482" stroke="#eeeeee"/>
+<text x="677.00" y="504" text-anchor="middle" font-family="sans-serif" font-size="12">2</text>
+<line x1="872.00" y1="55" x2="872.00" y2="482" stroke="#eeeeee"/>
+<text x="872.00" y="504" text-anchor="middle" font-family="sans-serif" font-size="12">2.4</text>
+<line x1="92" y1="55" x2="92" y2="482" stroke="black"/>
+<line x1="92" y1="482" x2="872" y2="482" stroke="black"/>
+<polygon points="92.00,461.44 287.00,423.68 482.00,329.29 677.00,184.40 872.00,259.76 872.00,259.76 677.00,184.40 482.00,329.29 287.00,423.68 92.00,461.44" fill="#0072B2" opacity="0.12"/>
+<polyline points="92.00,461.44 287.00,423.68 482.00,329.29 677.00,184.40 872.00,259.76" fill="none" stroke="#0072B2" stroke-width="2.5"/>
+<circle cx="92.00" cy="461.44" r="4" fill="#0072B2"/>
+<circle cx="287.00" cy="423.68" r="4" fill="#0072B2"/>
+<circle cx="482.00" cy="329.29" r="4" fill="#0072B2"/>
+<circle cx="677.00" cy="184.40" r="4" fill="#0072B2"/>
+<circle cx="872.00" cy="259.76" r="4" fill="#0072B2"/>
+<line x1="717" y1="73" x2="742" y2="73" stroke="#0072B2" stroke-width="3"/>
+<text x="749" y="77" font-family="sans-serif" font-size="12">CFOP</text>
+<polygon points="92.00,481.16 287.00,474.64 482.00,393.68 677.00,321.31 872.00,334.54 872.00,334.54 677.00,321.31 482.00,393.68 287.00,474.64 92.00,481.16" fill="#D55E00" opacity="0.12"/>
+<polyline points="92.00,481.16 287.00,474.64 482.00,393.68 677.00,321.31 872.00,334.54" fill="none" stroke="#D55E00" stroke-width="2.5"/>
+<circle cx="92.00" cy="481.16" r="4" fill="#D55E00"/>
+<circle cx="287.00" cy="474.64" r="4" fill="#D55E00"/>
+<circle cx="482.00" cy="393.68" r="4" fill="#D55E00"/>
+<circle cx="677.00" cy="321.31" r="4" fill="#D55E00"/>
+<circle cx="872.00" cy="334.54" r="4" fill="#D55E00"/>
+<line x1="717" y1="95" x2="742" y2="95" stroke="#D55E00" stroke-width="3"/>
+<text x="749" y="99" font-family="sans-serif" font-size="12">EAO</text>
+<polygon points="92.00,482.00 287.00,481.99 482.00,481.62 677.00,479.53 872.00,477.70 872.00,477.70 677.00,479.53 482.00,481.62 287.00,481.99 92.00,482.00" fill="#009E73" opacity="0.12"/>
+<polyline points="92.00,482.00 287.00,481.99 482.00,481.62 677.00,479.53 872.00,477.70" fill="none" stroke="#009E73" stroke-width="2.5"/>
+<circle cx="92.00" cy="482.00" r="4" fill="#009E73"/>
+<circle cx="287.00" cy="481.99" r="4" fill="#009E73"/>
+<circle cx="482.00" cy="481.62" r="4" fill="#009E73"/>
+<circle cx="677.00" cy="479.53" r="4" fill="#009E73"/>
+<circle cx="872.00" cy="477.70" r="4" fill="#009E73"/>
+<line x1="717" y1="117" x2="742" y2="117" stroke="#009E73" stroke-width="3"/>
+<text x="749" y="121" font-family="sans-serif" font-size="12">GMQ</text>
+<polygon points="92.00,473.68 287.00,405.85 482.00,289.59 677.00,171.73 872.00,86.63 872.00,86.63 677.00,171.73 482.00,289.59 287.00,405.85 92.00,473.68" fill="#CC79A7" opacity="0.12"/>
+<polyline points="92.00,473.68 287.00,405.85 482.00,289.59 677.00,171.73 872.00,86.63" fill="none" stroke="#CC79A7" stroke-width="2.5"/>
+<circle cx="92.00" cy="473.68" r="4" fill="#CC79A7"/>
+<circle cx="287.00" cy="405.85" r="4" fill="#CC79A7"/>
+<circle cx="482.00" cy="289.59" r="4" fill="#CC79A7"/>
+<circle cx="677.00" cy="171.73" r="4" fill="#CC79A7"/>
+<circle cx="872.00" cy="86.63" r="4" fill="#CC79A7"/>
+<line x1="717" y1="139" x2="742" y2="139" stroke="#CC79A7" stroke-width="3"/>
+<text x="749" y="143" font-family="sans-serif" font-size="12">LEO</text>
+<polygon points="92.00,482.00 287.00,482.00 482.00,482.00 677.00,471.28 872.00,481.87 872.00,481.87 677.00,471.28 482.00,482.00 287.00,482.00 92.00,482.00" fill="#E69F00" opacity="0.12"/>
+<polyline points="92.00,482.00 287.00,482.00 482.00,482.00 677.00,471.28 872.00,481.87" fill="none" stroke="#E69F00" stroke-width="2.5"/>
+<circle cx="92.00" cy="482.00" r="4" fill="#E69F00"/>
+<circle cx="287.00" cy="482.00" r="4" fill="#E69F00"/>
+<circle cx="482.00" cy="482.00" r="4" fill="#E69F00"/>
+<circle cx="677.00" cy="471.28" r="4" fill="#E69F00"/>
+<circle cx="872.00" cy="481.87" r="4" fill="#E69F00"/>
+<line x1="717" y1="161" x2="742" y2="161" stroke="#E69F00" stroke-width="3"/>
+<text x="749" y="165" font-family="sans-serif" font-size="12">LFO</text>
+<polygon points="92.00,481.98 287.00,481.98 482.00,481.00 677.00,465.13 872.00,461.63 872.00,461.63 677.00,465.13 482.00,481.00 287.00,481.98 92.00,481.98" fill="#56B4E9" opacity="0.12"/>
+<polyline points="92.00,481.98 287.00,481.98 482.00,481.00 677.00,465.13 872.00,461.63" fill="none" stroke="#56B4E9" stroke-width="2.5"/>
+<circle cx="92.00" cy="481.98" r="4" fill="#56B4E9"/>
+<circle cx="287.00" cy="481.98" r="4" fill="#56B4E9"/>
+<circle cx="482.00" cy="481.00" r="4" fill="#56B4E9"/>
+<circle cx="677.00" cy="465.13" r="4" fill="#56B4E9"/>
+<circle cx="872.00" cy="461.63" r="4" fill="#56B4E9"/>
+<line x1="717" y1="183" x2="742" y2="183" stroke="#56B4E9" stroke-width="3"/>
+<text x="749" y="187" font-family="sans-serif" font-size="12">QSALB-Full</text>
+<text x="482.0" y="540" text-anchor="middle" font-family="sans-serif" font-size="14">Arrival rate (tasks/device/slot)</text>
+<text transform="translate(22 268.5) rotate(-90)" text-anchor="middle" font-family="sans-serif" font-size="14">Average tasks/node</text>
+</svg>

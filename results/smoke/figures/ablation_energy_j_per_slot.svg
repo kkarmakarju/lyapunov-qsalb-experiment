@@ -1,0 +1,48 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="900" height="560" viewBox="0 0 900 560">
+<rect width="100%" height="100%" fill="white"/>
+<text x="450.0" y="30" text-anchor="middle" font-family="sans-serif" font-size="20">Ablation: energy consumption vs load</text>
+<line x1="92" y1="482.00" x2="872" y2="482.00" stroke="#dddddd"/>
+<text x="82" y="486.00" text-anchor="end" font-family="sans-serif" font-size="12">1.04</text>
+<line x1="92" y1="396.60" x2="872" y2="396.60" stroke="#dddddd"/>
+<text x="82" y="400.60" text-anchor="end" font-family="sans-serif" font-size="12">2.14</text>
+<line x1="92" y1="311.20" x2="872" y2="311.20" stroke="#dddddd"/>
+<text x="82" y="315.20" text-anchor="end" font-family="sans-serif" font-size="12">3.24</text>
+<line x1="92" y1="225.80" x2="872" y2="225.80" stroke="#dddddd"/>
+<text x="82" y="229.80" text-anchor="end" font-family="sans-serif" font-size="12">4.34</text>
+<line x1="92" y1="140.40" x2="872" y2="140.40" stroke="#dddddd"/>
+<text x="82" y="144.40" text-anchor="end" font-family="sans-serif" font-size="12">5.44</text>
+<line x1="92" y1="55.00" x2="872" y2="55.00" stroke="#dddddd"/>
+<text x="82" y="59.00" text-anchor="end" font-family="sans-serif" font-size="12">6.54</text>
+<line x1="92.00" y1="55" x2="92.00" y2="482" stroke="#eeeeee"/>
+<text x="92.00" y="504" text-anchor="middle" font-family="sans-serif" font-size="12">0.8</text>
+<line x1="872.00" y1="55" x2="872.00" y2="482" stroke="#eeeeee"/>
+<text x="872.00" y="504" text-anchor="middle" font-family="sans-serif" font-size="12">1.6</text>
+<line x1="92" y1="55" x2="92" y2="482" stroke="black"/>
+<line x1="92" y1="482" x2="872" y2="482" stroke="black"/>
+<polygon points="92.00,448.08 872.00,122.12 872.00,297.71 92.00,452.55" fill="#0072B2" opacity="0.12"/>
+<polyline points="92.00,450.32 872.00,209.92" fill="none" stroke="#0072B2" stroke-width="2.5"/>
+<circle cx="92.00" cy="450.32" r="4" fill="#0072B2"/>
+<circle cx="872.00" cy="209.92" r="4" fill="#0072B2"/>
+<line x1="717" y1="73" x2="742" y2="73" stroke="#0072B2" stroke-width="3"/>
+<text x="749" y="77" font-family="sans-serif" font-size="12">QSALB-Full</text>
+<polygon points="92.00,447.84 872.00,122.20 872.00,297.46 92.00,452.22" fill="#D55E00" opacity="0.12"/>
+<polyline points="92.00,450.03 872.00,209.83" fill="none" stroke="#D55E00" stroke-width="2.5"/>
+<circle cx="92.00" cy="450.03" r="4" fill="#D55E00"/>
+<circle cx="872.00" cy="209.83" r="4" fill="#D55E00"/>
+<line x1="717" y1="95" x2="742" y2="95" stroke="#D55E00" stroke-width="3"/>
+<text x="749" y="99" font-family="sans-serif" font-size="12">QSALB-NoEnergy</text>
+<polygon points="92.00,448.08 872.00,122.12 872.00,297.71 92.00,452.55" fill="#009E73" opacity="0.12"/>
+<polyline points="92.00,450.32 872.00,209.92" fill="none" stroke="#009E73" stroke-width="2.5"/>
+<circle cx="92.00" cy="450.32" r="4" fill="#009E73"/>
+<circle cx="872.00" cy="209.92" r="4" fill="#009E73"/>
+<line x1="717" y1="117" x2="742" y2="117" stroke="#009E73" stroke-width="3"/>
+<text x="749" y="121" font-family="sans-serif" font-size="12">QSALB-NoPred</text>
+<polygon points="92.00,442.76 872.00,84.45 872.00,286.11 92.00,447.44" fill="#CC79A7" opacity="0.12"/>
+<polyline points="92.00,445.10 872.00,185.28" fill="none" stroke="#CC79A7" stroke-width="2.5"/>
+<circle cx="92.00" cy="445.10" r="4" fill="#CC79A7"/>
+<circle cx="872.00" cy="185.28" r="4" fill="#CC79A7"/>
+<line x1="717" y1="139" x2="742" y2="139" stroke="#CC79A7" stroke-width="3"/>
+<text x="749" y="143" font-family="sans-serif" font-size="12">QSALB-NoQueue</text>
+<text x="482.0" y="540" text-anchor="middle" font-family="sans-serif" font-size="14">Arrival rate (tasks/device/slot)</text>
+<text transform="translate(22 268.5) rotate(-90)" text-anchor="middle" font-family="sans-serif" font-size="14">Energy (J/slot)</text>
+</svg>
