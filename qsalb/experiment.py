@@ -7,11 +7,12 @@ import platform
 import statistics
 import sys
 import time
+from concurrent.futures import ProcessPoolExecutor
 from datetime import datetime, timezone
 from pathlib import Path
-from typing import Any, Iterable
+from typing import Any
 
-from .plotting import make_figures
+from .plotting import make_figures, make_timeseries_figures
 from .simulator import Simulation
 
 
@@ -57,6 +58,14 @@ def _seed(cfg: dict[str, Any], replication: int, policy_index: int, condition_in
     return int(cfg["seed_base"]) + replication * 100_003 + condition_index * 37
 
 
+def _execute_job(job: tuple[dict[str, Any], str, str, float, int, int, int]) -> tuple[dict[str, Any], list[dict[str, float]]]:
+    cfg, experiment, scenario, rate, devices, replication, seed = job
+    policy = str(cfg.pop("_job_policy"))
+    cfg["network"]["iot_devices"] = devices
+    summary, series = Simulation(cfg, policy, rate, scenario, seed).run()
+    return {"experiment": experiment, "replication": replication, **summary}, series
+
+
 def run_experiments(cfg: dict[str, Any], output: Path, plans: set[str]) -> None:
     started = time.time()
     output.mkdir(parents=True, exist_ok=True)
@@ -81,21 +90,35 @@ def run_experiments(cfg: dict[str, Any], output: Path, plans: set[str]) -> None:
     if "timeseries" in plans:
         conditions.append(("timeseries", "bursty", float(cfg["time_series_rate"]), base_devices, list(dict.fromkeys(list(cfg["policies"]) + list(cfg["ablations"])))))
 
-    total = sum(len(policies) * int(cfg["replications"]) for _, _, _, _, policies in conditions)
-    completed = 0
+    jobs: list[tuple[dict[str, Any], str, str, float, int, int, int]] = []
     for condition_index, (experiment, scenario, rate, devices, policies) in enumerate(conditions):
         for policy_index, policy in enumerate(policies):
             for replication in range(int(cfg["replications"])):
                 local_cfg = json.loads(json.dumps(cfg))
-                local_cfg["network"]["iot_devices"] = devices
+                local_cfg["_job_policy"] = policy
                 seed = _seed(cfg, replication, policy_index, condition_index)
-                summary, series = Simulation(local_cfg, policy, rate, scenario, seed).run()
-                summary = {"experiment": experiment, "replication": replication, **summary}
-                raw.append(summary)
-                if experiment == "timeseries":
-                    timeseries_runs.append((policy, replication, series))
-                completed += 1
-                print(f"[{completed}/{total}] {experiment} {scenario} {policy} rate={rate:g} devices={devices} seed={seed}", flush=True)
+                jobs.append((local_cfg, experiment, scenario, rate, devices, replication, seed))
+
+    workers = max(1, int(cfg.get("workers", 1)))
+    if workers == 1:
+        results = map(_execute_job, jobs)
+    else:
+        executor = ProcessPoolExecutor(max_workers=workers)
+        results = executor.map(_execute_job, jobs)
+    try:
+        for completed, (summary, series) in enumerate(results, start=1):
+            raw.append(summary)
+            if summary["experiment"] == "timeseries":
+                timeseries_runs.append((str(summary["policy"]), int(summary["replication"]), series))
+            print(
+                f"[{completed}/{len(jobs)}] {summary['experiment']} {summary['scenario']} "
+                f"{summary['policy']} rate={float(summary['arrival_rate']):g} "
+                f"devices={summary['iot_devices']} seed={summary['seed']}",
+                flush=True,
+            )
+    finally:
+        if workers != 1:
+            executor.shutdown()
 
     aggregate = _aggregate(raw)
     _write_csv(output / "raw_runs.csv", raw)
@@ -115,6 +138,10 @@ def run_experiments(cfg: dict[str, Any], output: Path, plans: set[str]) -> None:
                     row[f"{key}_ci95"] = 1.96 * sd / math.sqrt(len(values))
                 time_rows.append(row)
         _write_csv(output / "timeseries.csv", time_rows)
+        make_timeseries_figures(
+            [{key: str(value) for key, value in row.items()} for row in time_rows],
+            output / "figures",
+        )
     make_figures([{key: str(value) for key, value in row.items()} for row in aggregate], output / "figures")
     metadata = {
         "created_utc": datetime.now(timezone.utc).isoformat(),

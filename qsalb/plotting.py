@@ -2,9 +2,6 @@ from __future__ import annotations
 
 import html
 from pathlib import Path
-from typing import Iterable
-
-
 COLORS = ["#0072B2", "#D55E00", "#009E73", "#CC79A7", "#E69F00", "#56B4E9", "#000000", "#7A5195"]
 
 
@@ -62,19 +59,31 @@ def line_chart(path: Path, rows: list[dict[str, str]], x_key: str, y_key: str,
         content.append(f'<polyline points="{points}" fill="none" stroke="{color}" stroke-width="2.5"/>')
         for x, y, _ in values:
             content.append(f'<circle cx="{sx(x):.2f}" cy="{sy(y):.2f}" r="4" fill="{color}"/>')
-        lx, ly = width - right - 155, top + 18 + index * 22
+    # Draw the legend last so uncertainty bands cannot cover it.
+    for index, group in enumerate(groups):
+        color = COLORS[index % len(COLORS)]
+        lx, ly = width - right - 175, top + 18 + index * 22
+        content.append(f'<rect x="{lx-8}" y="{ly-12}" width="173" height="20" fill="white" opacity="0.82"/>')
         content.append(f'<line x1="{lx}" y1="{ly}" x2="{lx+25}" y2="{ly}" stroke="{color}" stroke-width="3"/>')
         content.append(f'<text x="{lx+32}" y="{ly+4}" font-family="sans-serif" font-size="12">{html.escape(group)}</text>')
     content.append(f'<text x="{left+plot_w/2}" y="{height-20}" text-anchor="middle" font-family="sans-serif" font-size="14">{html.escape(x_label)}</text>')
     content.append(f'<text transform="translate(22 {top+plot_h/2}) rotate(-90)" text-anchor="middle" font-family="sans-serif" font-size="14">{html.escape(y_label)}</text>')
     content.append('</svg>')
     path.write_text("\n".join(content), encoding="utf-8")
+    try:
+        from .png_plotting import line_chart_png
+        line_chart_png(path.with_suffix(".png"), rows, x_key, y_key, group_key,
+                       title, x_label, y_label, ci_key)
+    except ImportError:
+        # SVG output remains dependency-free. PNG is emitted when Pillow is
+        # available (as it is in Colab and the bundled research runtime).
+        pass
 
 
 def make_figures(aggregate_rows: list[dict[str, str]], output_dir: Path) -> None:
     output_dir.mkdir(parents=True, exist_ok=True)
     specifications = [
-        ("average_queue", "Average total backlog vs load", "Average tasks/node"),
+        ("average_queue", "Time-average backlog per node vs load", "Average tasks/node"),
         ("estimated_latency_ms", "Estimated end-to-end latency vs load", "Latency (ms)"),
         ("energy_j_per_slot", "Energy consumption vs load", "Energy (J/slot)"),
         ("queue_variance", "Queue variance vs load", "Queue variance"),
@@ -88,4 +97,28 @@ def make_figures(aggregate_rows: list[dict[str, str]], output_dir: Path) -> None
             line_chart(output_dir / f"baseline_{metric}.svg", baseline, "arrival_rate", f"{metric}_mean", "policy", title, "Arrival rate (tasks/device/slot)", y_label, f"{metric}_ci95")
         if ablation and metric in {"average_queue", "estimated_latency_ms", "energy_j_per_slot", "cloud_ratio"}:
             line_chart(output_dir / f"ablation_{metric}.svg", ablation, "arrival_rate", f"{metric}_mean", "policy", f"Ablation: {title.lower()}", "Arrival rate (tasks/device/slot)", y_label, f"{metric}_ci95")
+
+
+def make_timeseries_figures(time_rows: list[dict[str, str]], output_dir: Path) -> None:
+    output_dir.mkdir(parents=True, exist_ok=True)
+    baseline_names = {"QSALB-Full", "LEO", "GMQ", "LFO", "EAO", "CFOP"}
+    baseline = [row for row in time_rows if row["policy"] in baseline_names]
+    specifications = [
+        ("average_queue", "Average backlog over time", "Average tasks/node"),
+        ("estimated_latency_ms", "Estimated end-to-end latency over time", "Latency (ms)"),
+        ("energy_j", "Energy consumption over time", "Energy (J/slot)"),
+        ("queue_variance", "Queue variance over time", "Queue variance"),
+    ]
+    for metric, title, y_label in specifications:
+        line_chart(
+            output_dir / f"timeseries_{metric}.svg",
+            baseline,
+            "slot",
+            f"{metric}_mean",
+            "policy",
+            title,
+            "Time slot",
+            y_label,
+            f"{metric}_ci95",
+        )
 

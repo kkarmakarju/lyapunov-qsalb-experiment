@@ -37,6 +37,8 @@ def validate_config(cfg: dict[str, Any]) -> None:
         raise ValueError("replications must be positive")
     if any(rate < 0 for rate in cfg["arrival_rates"]):
         raise ValueError("arrival rates must be non-negative")
+    if int(cfg["arrival_cap_per_device"]) < 1:
+        raise ValueError("arrival_cap_per_device must be positive")
     for key in ("iot_devices", "edge_nodes", "fog_nodes", "cloud_nodes"):
         if cfg["network"][key] < 1:
             raise ValueError(f"network.{key} must be positive")

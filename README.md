@@ -20,7 +20,8 @@ as reconstruction assumptions in `ASSUMPTIONS.md` and kept configurable.
 - Ablations: NoPred, NoEnergy, and NoQueue.
 - Twenty independent replications, warm-up removal, deterministic seeds,
   per-run raw CSVs, aggregates, 95% confidence intervals, and SVG figures.
-- No third-party Python dependency is required.
+- No third-party dependency is required for simulation, CSV export, or SVG
+  figures. When Pillow is available, matching PNG figures are also generated.
 
 ## Run
 
@@ -49,11 +50,12 @@ python run_experiments.py --config config/manuscript.json --output results/manus
 - `aggregate.csv`: means, sample standard deviations, and 95% confidence
   intervals across independent runs.
 - `timeseries.csv`: averaged slot-level trajectories for the time-series run.
-- `figures/*.svg`: publication-ready plots generated directly from aggregates.
+- `figures/*.svg` and optional `figures/*.png`: publication-ready plots
+  generated directly from aggregates and time-series data.
 - `resolved_config.json`: the exact configuration copied into the result.
 - `run_metadata.json`: timestamp, Python version, platform, and elapsed time.
 
-The principal metrics are average total backlog, queue variance, estimated
+The principal metrics are time-average backlog per node, queue variance, estimated
 end-to-end latency, energy per slot, cloud-use ratio, throughput, deadline
 violation ratio, and drop ratio. Latency is evaluated for every admitted task
 using the manuscript's communication + queue-wait + processing expression;

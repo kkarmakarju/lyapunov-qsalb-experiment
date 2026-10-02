@@ -1,5 +1,6 @@
 {
   "seed_base": 20260929,
+  "workers": 4,
   "replications": 20,
   "slots": 240,
   "warmup_slots": 60,
@@ -15,6 +16,7 @@
   "stress_policies": ["QSALB-Full", "GMQ", "CFOP"],
   "stress_arrival_rate": 1.6,
   "time_series_rate": 1.6,
+  "arrival_cap_per_device": 20,
   "network": {
     "iot_devices": 100,
     "edge_nodes": 10,

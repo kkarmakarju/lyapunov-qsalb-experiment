@@ -1,9 +1,11 @@
 {
   "extends": "manuscript.json",
   "seed_base": 7001,
+  "workers": 2,
   "replications": 2,
   "slots": 36,
   "warmup_slots": 8,
+  "arrival_cap_per_device": 20,
   "arrival_rates": [0.8, 1.6],
   "policies": ["QSALB-Full", "LEO", "GMQ", "LFO", "EAO", "CFOP"],
   "ablations": ["QSALB-Full", "QSALB-NoPred", "QSALB-NoEnergy", "QSALB-NoQueue"],

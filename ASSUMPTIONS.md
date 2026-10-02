@@ -22,9 +22,10 @@ seeds, or error-bar definition. Defaults for all of these are in
 
 ## Explicit modeling decisions
 
-1. **Units.** One slot is one second. Arrival rates in plots are interpreted as
-   tasks per device per slot, because the figures use that label even though the
-   setup paragraph says tasks per minute.
+1. **Units.** One slot is one second, and arrival rates are reported as tasks per
+   device per slot throughout the simulator and revised manuscript.
+   Generated arrivals are capped at 20 tasks per device per slot, matching the
+   bounded-arrival assumption used in the stability proof.
 2. **Service.** The queue model serves an integer number of tasks per slot. A
    node's service limit is derived from its GFLOPS and the configured reference
    cycles per task. Actual task cycles remain in the processing-delay estimate.

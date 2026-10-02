@@ -295,7 +295,10 @@ class Simulation:
             slot_values = {key: 0.0 for key in ("arrivals", "admitted", "dropped", "completed", "deadline_violations", "latency_s", "energy_j", "cloud")}
             batches: list[tuple[int, int, int]] = []
             for position, source in enumerate(self.topology.iot_ids):
-                count = _poisson(self.rng, self._scenario_rate(position, slot))
+                count = min(
+                    int(self.cfg["arrival_cap_per_device"]),
+                    _poisson(self.rng, self._scenario_rate(position, slot)),
+                )
                 batches.append((position, source, count))
                 slot_values["arrivals"] += count
 
